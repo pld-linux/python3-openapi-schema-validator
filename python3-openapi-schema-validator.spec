@@ -5,29 +5,31 @@
 Summary:	OpenAPI schema validation for Python
 Summary(pl.UTF-8):	Sprawdzanie poprawności schematów OpenAPI dla Pythona
 Name:		python3-openapi-schema-validator
-Version:	0.6.3
+Version:	0.9.0
 Release:	1
 License:	BSD
 Group:		Libraries/Python
 #Source0Download: https://pypi.org/simple/openapi-schema-validator/
 Source0:	https://files.pythonhosted.org/packages/source/o/openapi-schema-validator/openapi_schema_validator-%{version}.tar.gz
-# Source0-md5:	7076003c896e5270079d7e9dc33f1498
+# Source0-md5:	d4282d07d496dc307335f23d1a3854ee
 URL:		https://pypi.org/project/openapi-schema-validator/
 BuildRequires:	python3-build
 BuildRequires:	python3-installer
-BuildRequires:	python3-modules >= 1:3.8
+BuildRequires:	python3-modules >= 1:3.10
 BuildRequires:	python3-poetry-core >= 1.0.0
-BuildRequires:	python3-setuptools
 %if %{with tests}
 BuildRequires:	python3-jsonschema >= 4.19.1
-BuildRequires:	python3-jsonschema-specifications >= 2023.5.2
-BuildRequires:	python3-pytest >= 8
+BuildRequires:	python3-jsonschema-specifications >= 2024.10.1
+BuildRequires:	python3-pydantic >= 2.0.0
+BuildRequires:	python3-pydantic-settings >= 2.0.0
+BuildRequires:	python3-pytest >= 9
 BuildRequires:	python3-pytest-cov
+BuildRequires:	python3-referencing >= 0.37.0
 BuildRequires:	python3-rfc3339_validator
 %endif
 BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 2.044
-Requires:	python3-modules >= 1:3.8
+Requires:	python3-modules >= 1:3.10
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -42,17 +44,6 @@ Openapi-schema-validator to biblioteka Pythona sprawdzająca poprawność
 schematu względem specyfikacji OpenAPI Schema Specification v3.0,
 będącej rozszerzonym podzbiorem specyfikacji JSON Schema Specification
 Wright Draft 00 <http://json-schema.org/>.
-
-%package apidocs
-Summary:	API documentation for Python openapi-schema-validator module
-Summary(pl.UTF-8):	Dokumentacja API modułu Pythona openapi-schema-validator
-Group:		Documentation
-
-%description apidocs
-API documentation for Python openapi-schema-validator module.
-
-%description apidocs -l pl.UTF-8
-Dokumentacja API modułu Pythona openapi-schema-validator.
 
 %prep
 %setup -q -n openapi_schema_validator-%{version}
